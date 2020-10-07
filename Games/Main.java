@@ -8,6 +8,7 @@ public class Main {
    * ArrayList pieces will contain information on the location of a piece and the type of piece it is
    * */
   public ArrayList<String> pieces = new ArrayList<>();
+  pieces[] = ["n","n","n","n","n","n","n","n"];
   
   /*
    * This is the concept of chess.
