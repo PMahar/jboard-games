@@ -1,4 +1,3 @@
-package Games;
 
   /**
    * This is the main class for executing methods in this project
@@ -40,7 +39,7 @@ public class Main {
    * "castle". It happens when the king and the rook "swap places".
    * */
   public static void main(String[] args) {
-    Board board = Board();
+    Board board = new Board();
     board.drawBoard();
   }
 } 
