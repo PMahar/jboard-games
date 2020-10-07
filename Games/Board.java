@@ -1,4 +1,4 @@
-package games;
+package Games;
 
 public class Board {
   public void drawBoard(){
