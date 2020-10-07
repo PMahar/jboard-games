@@ -7,7 +7,7 @@ public class Main {
   /*
    * ArrayList pieces will contain information on the location of a piece and the type of piece it is
    * */
-  public ArrayList<String> pieces = new ArrayList<>();
+  public static ArrayList<String> pieces = new ArrayList<>();
   
   /*
    * This is the concept of chess.
@@ -45,6 +45,9 @@ public class Main {
    * */
   public static void main(String[] args) {
     Board board = new Board();
+    for(int i =0; i <9; i++){
+     pieces[i] = "n";
+    }
     board.drawBoard();
   }
 } 
