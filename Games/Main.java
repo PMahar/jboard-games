@@ -1,9 +1,14 @@
-
+import java.util.ArrayList;
   /**
    * This is the main class for executing methods in this project
    * 
    * */
 public class Main {
+  /*
+   * ArrayList pieces will contain information on the location of a piece and the type of piece it is
+   * */
+  public ArrayList<String> pieces = new ArrayList<>();
+  
   /*
    * This is the concept of chess.
    * Pawns can move 1 space forward, can only move 1 space diagonally in front 
