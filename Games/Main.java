@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
   /**
    * This is the main class for executing methods in this project
    * 
@@ -41,7 +42,13 @@ public class Main {
    * */
   public static void main(String[] args) {
     Board board = new Board();
+    Player player = new Player();
     System.out.println("Uppercase letters are white, lowercase are black");
-    board.drawBoard();
+    board.drawBoard(); // Create the board
+    Scanner input = new Scanner(System.in);
+    String in = input.nextLine();
+    if(input.hasNextLine()){
+      player.inputMove(in);
+    }
   }
 } 
