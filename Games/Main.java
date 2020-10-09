@@ -5,13 +5,7 @@ import java.util.Arrays;
    * 
    * */
 public class Main {
-  /*
-   * ArrayList pieces will contain information on the location of a piece and the type of piece it is
-   * */
-  public ArrayList<String> pieces = new ArrayList<>(Arrays.asList("n","n","n","n","n","n","n","n"));
-
-  
-  /*
+   /*
    * This is the concept of chess.
    * Pawns can move 1 space forward, can only move 1 space diagonally in front 
    * of itself in an offensive. For it's first move it can move either one or 
