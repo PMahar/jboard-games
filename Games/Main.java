@@ -40,15 +40,13 @@ public class Main {
    * There is one scenario in which a king can move 2 spaces, this is called 
    * "castle". It happens when the king and the rook "swap places".
    * */
+  //Because System.out.print() can't be called from outside a method and we can't
+  //establish a public variable in a static method, we'll take user input in class
+  //Board
   public static void main(String[] args) {
     Board board = new Board();
     Player player = new Player();
     System.out.println("Uppercase letters are white, lowercase are black");
     board.drawBoard(); // Create the board
-    Scanner input = new Scanner(System.in);
-    String in = input.nextLine();
-    if(input.hasNextLine()){
-      player.inputMove(in);
-    }
   }
 } 
