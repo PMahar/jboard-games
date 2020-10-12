@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
   /**
    * This is the main class for executing methods in this project
    * 

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Board {
   Main main = new Main();
   // The White peices are capital and black pieces are lowercase
@@ -16,5 +18,13 @@ public class Board {
       System.out.println(i + " |" + board[i - 1][0] + "|" + board[i - 1][1] + "|" + board[i - 1][2] + "|" + board[i - 1][3] + "|" + board[i - 1][4] + "|" + board[i - 1][5] + "|" + board[i - 1][6] + "|" + board[i - 1][7] + "|");
     }
     System.out.println("   A B C D E F G H");
+    System.out.println();
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Pick a piece (X-coord A-H where A = 1):");
+    int moveX = sc.nextInt() - 1;
+    System.out.println("Pick a piece (Y-coord 1-8):");
+    int moveY = sc.nextInt() - 1;
+    int[] uin = {moveX, moveY};
+    System.out.println("Got user input " + moveX + ", " + moveY);
   }
 }
