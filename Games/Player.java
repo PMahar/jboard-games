@@ -19,26 +19,76 @@ public class Player {
   public void inputMove(int[] piece, int[] move){
     Board board = new Board();
     // If the location to move to doesn't have any piece there then move onto the next step of moving a piece
-    if(board.board[move[1]][move[0]] == 'n'){ 
+    if(board.board[move[1]][move[0]] == 'n'){
       // Sets a char variable "pieceNam" to the value of the piece to be moved
       char pieceNam = board.board[piece[1]][piece[0]];
-      // If pieceNam is equal to k (the piece is a knight) the execute the following code
-      if(pieceNam == 'k' || pieceNam == 'K' ){
-        // If the difference between the x coordinates of the piece and where to move are within the rules of 
-        // movement for a knight
-        if((piece[1] - move[1]) == 3 || (piece[1] - move[1]) == -3 || (piece[1] - move[1]) == 1 || (piece[1] - move[1]) == -1){
-          // If the difference between the x coordinates of the piece and where to move are within the rules
-          // of movement for a knight
-          if((piece[0] - move[0]) == 3 || (piece[0] - move[0]) == -3 || (piece[0] - move[0]) == 1 || (piece[0] - move[0]) == -1){
-            // Sets the original location of the piece to 'n' (null/ nothing)
-            board.board[piece[1]][piece[0]] = 'n'; 
-            // Sets the location to move to, to the piece type
-            board.board[move[1]][move[0]] = pieceNam; 
-            // Draws the board
-            board.drawBoard();
-           }
-         }
-     }
+      switch(pieceNam){
+        case 'k':
+          System.out.println("Piece chosen is a knight");
+          // If the difference between the x coordinates of the piece and where to move are within the rules of 
+          // movement for a knight
+          if((piece[1] - move[1]) == 3 || (piece[1] - move[1]) == -3 || (piece[1] - move[1]) == 1 || (piece[1] - move[1]) == -1){
+            System.out.println("x is working");
+            // If the difference between the x coordinates of the piece and where to move are within the rules
+            // of movement for a knight
+            if((piece[0] - move[0]) == 3 || (piece[0] - move[0]) == -3 || (piece[0] - move[0]) == 1 || (piece[0] - move[0]) == -1){
+              System.out.println("Y is working");
+              // Sets the original location of the piece to 'n' (null/ nothing)
+              board.board[piece[1]][piece[0]] = 'n'; 
+              System.out.println(board.board[piece[1]][piece[0]]);
+              // Sets the location to move to, to the piece type
+              board.board[move[1]][move[0]] = pieceNam; 
+              // Draws the board
+              board.drawBoard();
+            }
+          }
+          break;
+       case 'K':
+          System.out.println("The piece chosen is a white knight");
+          // If the difference between the x coordinates of the piece and where to move are within the rules of 
+          // movement for a knight
+          if((piece[1] - move[1]) == 3 || (piece[1] - move[1]) == -3 || (piece[1] - move[1]) == 1 || (piece[1] - move[1]) == -1){
+            System.out.println("x is working");
+            // If the difference between the x coordinates of the piece and where to move are within the rules
+            // of movement for a knight
+            if((piece[0] - move[0]) == 3 || (piece[0] - move[0]) == -3 || (piece[0] - move[0]) == 1 || (piece[0] - move[0]) == -1){
+              System.out.println("Y is working");
+              // Sets the original location of the piece to 'n' (null/ nothing)
+              board.board[piece[1]][piece[0]] = 'n'; 
+              System.out.println(board.board[piece[1]][piece[0]]);
+              // Sets the location to move to, to the piece type
+              board.board[move[1]][move[0]] = pieceNam; 
+              // Draws the board
+              board.drawBoard();
+            }
+          }
+          break;
+       case 'r':
+          System.out.println("The piece choosen is a black rook");
+          break;
+       case 'R':
+         System.out.println("The piece choosen is a white rook");
+         break;
+       case 'b':
+         System.out.println("The piece choosen is a black bishop");
+         break;
+       case 'B':
+         System.out.println("The piece choosen is a white bishop");
+         break;
+       case 'i':
+         System.out.println("The piece choosen is the black king");
+         break;
+       case 'I':
+         System.out.println("The piece choosen is the white king");
+         break;
+       case 'p':
+          System.out.println("The piece choosen is a black pawn");
+          break;
+       case 'P':
+         System.out.println("The piece choosen is a white pawn");
+         break;
+        default:
+          break;
+      }
    }
- }
 }
