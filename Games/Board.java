@@ -9,6 +9,7 @@ public class Board {
   // Char[][] board is the matrix that has all of the information on what
   // pieces are where and what pieces they are
   // The char 'i' is representitive of the king piece
+  // board[y][x]
   public char[][] board =
     {{'r','k','b','i','q','b','k','r'},{'p','p','p','p','p','p','p','p'},
     {'n','n','n','n','n','n','n','n'},{'n','n','n','n','n','n','n','n'},
