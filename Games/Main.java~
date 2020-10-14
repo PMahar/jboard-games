@@ -1,12 +1,11 @@
-package jboard.games;
-import jboard.games.Board;
-
+import java.util.ArrayList;
+import java.util.Arrays;
   /**
    * This is the main class for executing methods in this project
    * 
    * */
 public class Main {
-  /*
+   /*
    * This is the concept of chess.
    * Pawns can move 1 space forward, can only move 1 space diagonally in front 
    * of itself in an offensive. For it's first move it can move either one or 
@@ -40,8 +39,13 @@ public class Main {
    * There is one scenario in which a king can move 2 spaces, this is called 
    * "castle". It happens when the king and the rook "swap places".
    * */
+  //Because System.out.print() can't be called from outside a method and we can't
+  //establish a public variable in a static method, we'll take user input in class
+  //Board
   public static void main(String[] args) {
-    Board board = new Board;
-    board.drawBoard();
+    Board board = new Board();
+    Player player = new Player();
+    System.out.println("Uppercase letters are white, lowercase are black");
+    board.drawBoard(); // Create the board
   }
 } 

@@ -5,6 +5,8 @@ import java.util.Arrays;
    * 
    * */
 public class Main {
+  // These are to make moving pieces a little bit easier
+  private int ans;
    /*
    * This is the concept of chess.
    * Pawns can move 1 space forward, can only move 1 space diagonally in front 

@@ -1,16 +1,7 @@
 import java.util.Scanner;
 
 public class Board {
-  
   // These are to make moving pieces a little bit easier
-  private int a = 0;
-  private int b = 1;
-  private int c = 2;
-  private int d = 3;
-  private int e = 4;
-  private int f = 5;
-  private int g = 6;
-  private int h = 7;
   private int ans;
   
   Main main = new Main();
@@ -26,10 +17,14 @@ public class Board {
     {'n','n','n','n','n','n','n','n'},{'n','n','n','n','n','n','n','n'},
     {'n','n','n','n','n','n','n','n'},{'n','n','n','n','n','n','n','n'},
     {'P','P','P','P','P','P','P','P'},{'R','K','B','Q','I','B','K','R'}};
+  /**
+   * This draws the board
+   * */
   public void drawBoard(){
     for(int i = 8; i > 0; i--){
       System.out.println(i + " |" + board[i - 1][0] + "|" + board[i - 1][1] + "|" + board[i - 1][2] + "|" + board[i - 1][3] + "|" + board[i - 1][4] + "|" + board[i - 1][5] + "|" + board[i - 1][6] + "|" + board[i - 1][7] + "|");
     }
+    // Print the labels for each part of the board
     System.out.println("   A B C D E F G H");
     System.out.println();
     Scanner sc = new Scanner(System.in);
@@ -161,46 +156,71 @@ public class Board {
          break;
        case 'i':
          System.out.println("The piece choosen is the black king");
-         // Sets the original location of the piece to 'n' (null/ nothing)
-         board[piece[1]][piece[0]] = 'n'; 
-         // Sets the location to move to, to the piece type
-         board[move[1]][move[0]] = pieceNam;
-         // Draws the board
-         drawBoard();
+         // If the location desired to move to doesn't have any interfering pieces than continue
+         if(checkSurround(piece,move,pieceNam) == 1){
+           if((piece[1] - move[1]) == 1 || (piece[0] - move[0]) == 1 || (piece[1] - move[1]) == -1 || (piece[0] - move[0]) == -1){ 
+             // Sets the original location of the piece to 'n' (null/ nothing)
+             board[piece[1]][piece[0]] = 'n'; 
+             // Sets the location to move to, to the piece type
+             board[move[1]][move[0]] = pieceNam;
+             // Draws the board
+             drawBoard();
+           }
+         }
          break;
        case 'I':
          System.out.println("The piece choosen is the white king");
-         // Sets the original location of the piece to 'n' (null/ nothing)
-         board[piece[1]][piece[0]] = 'n'; 
-         // Sets the location to move to, to the piece type
-         board[move[1]][move[0]] = pieceNam;
-         // Draws the board
-         drawBoard();
+         // If the location desired to move to doesn't have any interfering pieces than continue
+         if(checkSurround(piece,move,pieceNam) == 1){
+           if((piece[1] - move[1]) == 1 || (piece[0] - move[0]) == 1 || (piece[1] - move[1]) == -1 || (piece[0] - move[0]) == -1){
+             // Sets the original location of the piece to 'n' (null/ nothing)
+             board[piece[1]][piece[0]] = 'n'; 
+             // Sets the location to move to, to the piece type
+             board[move[1]][move[0]] = pieceNam;
+             // Draws the board
+             drawBoard();
+           }
+         }
          break;
        case 'p':
          System.out.println("The piece choosen is a black pawn");
-         // Sets the original location of the piece to 'n' (null/ nothing)
-         board[piece[1]][piece[0]] = 'n'; 
-         // Sets the location to move to, to the piece type
-         board[move[1]][move[0]] = pieceNam;
-         // Draws the board
-         drawBoard();
+         System.out.println("value is " +(piece[1] - move[1]));
+         if(checkSurround(piece,move,pieceNam) == 1){
+           System.out.println("valid");
+           if((piece[1] - move[1]) == -2 || (piece[1] - move[1]) == -1){
+             // Sets the original location of the piece to 'n' (null/ nothing)
+             board[piece[1]][piece[0]] = 'n'; 
+             // Sets the location to move to, to the piece type
+             board[move[1]][move[0]] = pieceNam;
+             // Draws the board
+             drawBoard();
+           }
+         }else {
+           System.out.println("Invalid move!"); 
+         }
          break;
-       case 'P':
-         System.out.println("The piece choosen is a white pawn");
-         // Sets the original location of the piece to 'n' (null/ nothing)
-         board[piece[1]][piece[0]] = 'n'; 
-         // Sets the location to move to, to the piece type
-         // Draws the board
-         drawBoard();
-         break;
-       default:
+        case 'P':
+          System.out.println("The piece choosen is a white pawn");
+          if(checkSurround(piece,move,pieceNam) == 1){
+            if((piece[1] - move[1]) == 2 || (piece[1] - move[1]) == 1){
+              // Sets the original location of the piece to 'n' (null/ nothing)
+             board[piece[1]][piece[0]] = 'n'; 
+             // Sets the location to move to, to the piece type
+             board[move[1]][move[0]] = pieceNam;
+             // Draws the board
+             drawBoard();
+            }
+          }else {
+            System.out.println("Invalid move!");
+          }
+          break;
+        default:
           break;
       }
     }
-   // Draws the board
-   drawBoard();
-   }
+    // Draws the board
+    drawBoard();
+  }
   
   /**
    * This is used to check the surroundings to see if a piece can move without interfering with another piece
@@ -209,26 +229,27 @@ public class Board {
    * @param char type is the type of piece to be looked around
    * */
   private int checkSurround(int[] piece, int[] moveTo, char type){
-   int distX = piece[1] - moveTo[1]; // This is the distance that the piece needs to move in the X-ax
-   int distY = piece[0] - moveTo[0]; // This is the distance that the piece needs to move in the Y-axis
-   int up; // The amount of spaces upwards a piece can move
-   int down; // The amount of spaces down a piece can move 
-   int left; // The amount of spaces to the left a piece can move
-   int right; // The amount of spaces to the right a piece can move
-   int diagUpRight; // The amount of spaces a piece can move diagonally upwards and to the right
-   int diagUpLeft; // The amount of spaces a piece can move diagonally upwards and to the left
-   int diagDownRight; // The amount of spaces a piece can move diagonally downwards and to the right
-   int diagDownLeft; // The amount of spaces a piece can move diagonally downwards and to the left
-   // If the piece is a rook then continue into the body
-   if( type == 'r' || type == 'R'){
-     for (int i = distY; i < distY; i++){
-       for(int j = distX; j < distX; j++){
-         // If the selected piece is empty then set variable ans to 1
-         if(board[piece[1]+j][piece[0]+i] == 'n'){
-           System.out.println("Valid so far at " + piece[1] + " " + piece[0]);
-           ans = 1;
-         }
-       } 
+    int distX = piece[0] - moveTo[0]; // This is the distance that the piece needs to move in the X-ax
+    int distY = piece[1] - moveTo[1]; // This is the distance that the piece needs to move in the Y-axis
+    int up; // The amount of spaces upwards a piece can move
+    int down; // The amount of spaces down a piece can move 
+    int left; // The amount of spaces to the left a piece can move
+    int right; // The amount of spaces to the right a piece can move
+    int diagUpRight; // The amount of spaces a piece can move diagonally upwards and to the right
+    int diagUpLeft; // The amount of spaces a piece can move diagonally upwards and to the left
+    int diagDownRight; // The amount of spaces a piece can move diagonally downwards and to the right
+    int diagDownLeft; // The amount of spaces a piece can move diagonally downwards and to the left
+    // If the piece is a rook then continue into the body
+    System.out.println(" type is " + type);
+    if( type == 'r' || type == 'R'){
+      for (int i = distY; i < distY; i++){
+        for(int j = distX; j < distX; j++){
+          // If the selected piece is empty then set variable ans to 1
+          if(board[piece[1]+j][piece[0]+i] == 'n'){
+            System.out.println("Valid so far at " + piece[1] + " " + piece[0]);
+            ans = 1;
+          }
+        } 
      }
    }
    if(type == 'b' || type == 'B'){
@@ -236,6 +257,20 @@ public class Board {
        for(int j = distX; j < distX; j++){
          System.out.println(piece[1] + " " + piece[0]);
          // If the selected piece is empty than set variable ans to 1
+         if(board[piece[1]+j][piece[0]+i] == 'n'){
+           System.out.println("Valid at " + piece[1] + " " + piece[0]);
+           ans = 1;
+         }
+       }
+     }
+   }
+   if(type == 'p' || type == 'P'){
+     for(int i = -distY; i < distY; i++){
+       System.out.println(" i = " + i + " distY = " + distY);
+       for(int j = -distX; j < distX; j++){
+         System.out.println("j = " + j + " distX = " + distX);
+         // If the selected piece is empty than set variable ans to 1
+         System.out.println(board[piece[1]][piece[0]+i]);
          if(board[piece[1]+j][piece[0]+i] == 'n'){
            System.out.println("Valid at " + piece[1] + " " + piece[0]);
            ans = 1;
