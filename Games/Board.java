@@ -1,10 +1,8 @@
 import java.util.Scanner;
 
 public class Board {
-  // These are to make moving pieces a little bit easier
-  private int ans = 0;
-  
   Main main = new Main();
+  int ans;
   // The White peices are capital and black pieces are lowercase
   // Matrix board will contain information on the location and types of pieces, if there are no pieces it 
   // will show "n"  
@@ -49,6 +47,8 @@ public class Board {
    * @param moveTo is the second array given and will be checked to see if there is a pre-existing piece
    * */
   public void inputMove(int[] piece, int[] move){
+    int distX = piece[0] - move[0]; // This is the distance that the piece needs to move in the X-ax
+    int distY = piece[1] - move[1]; // This is the distance that the piece needs to move in the Y-axis
     // If the location to move to doesn't have any piece there then move onto the next step of moving a piece
     if(board[move[1]][move[0]] == 'n'){
       // Sets a char variable "pieceNam" to the value of the piece to be moved
@@ -185,19 +185,42 @@ public class Board {
         case 'p':
           System.out.println("The piece choosen is a black pawn");
           System.out.println("value is " +(piece[1] - move[1]));
-          if(checkSurround(piece,move,pieceNam) == 1){
-            System.out.println("valid");
-            if((piece[1] - move[1]) == -2 || (piece[1] - move[1]) == -1){
-              // Sets the original location of the piece to 'n' (null/ nothing)
-              board[piece[1]][piece[0]] = 'n'; 
-              // Sets the location to move to, to the piece type
-              board[move[1]][move[0]] = pieceNam;
-              // Draws the board
-              drawBoard();
+          // Check all of the possible moves to see if any have piece that would make a move invalid
+          for(int i = -distY; i < distY; i++){
+            System.out.println(" i = " + i + " distY = " + distY);
+            for(int j = -distX; j < distX; j++){
+              System.out.println("j = " + j + " distX = " + distX);
+              // If the selected piece is empty than set variable ans to 1
+              System.out.println(board[piece[1]][piece[0]+i]);
+              if(board[piece[1]+j][piece[0]+i] == 'n'){
+                System.out.println("Vlaid");
+                System.out.println("valid");
+                if((piece[1] - move[1]) == -2 || (piece[1] - move[1]) == -1){
+                  // Sets the original location of the piece to 'n' (null/ nothing)
+                  board[piece[1]][piece[0]] = 'n'; 
+                  // Sets the location to move to, to the piece type
+                  board[move[1]][move[0]] = pieceNam;
+                  // Draws the board
+                  drawBoard();
+                } else {
+                  System.out.println("Invalid move"); 
+                }
+                }
+              }
             }
-          } else {
-            System.out.println("Invalid move!"); 
-          }
+//          if(checkSurround(piece,move,pieceNam) == 1){
+//            System.out.println("valid");
+//            if((piece[1] - move[1]) == -2 || (piece[1] - move[1]) == -1){
+//              // Sets the original location of the piece to 'n' (null/ nothing)
+//              board[piece[1]][piece[0]] = 'n'; 
+//              // Sets the location to move to, to the piece type
+//              board[move[1]][move[0]] = pieceNam;
+//              // Draws the board
+//              drawBoard();
+//            }
+//          } else {
+//            System.out.println("Invalid move, there is a piece in the way!"); 
+//          }
           break;
         case 'P':
           System.out.println("The piece choosen is a white pawn");
@@ -211,7 +234,7 @@ public class Board {
               drawBoard();
             }
           } else {
-            System.out.println("Invalid move!");
+            System.out.println("Invalid move, piece in the way!");
           }
           break;
         default:
@@ -266,7 +289,7 @@ public class Board {
       }
     }
     // If the piece is a pawn
-    if(type == 'p' || type == 'P'){
+    if( type == 'p' || type == 'P'){
       // Check all of the possible moves to see if any have piece that would make a move invalid
       for(int i = -distY; i < distY; i++){
         System.out.println(" i = " + i + " distY = " + distY);
