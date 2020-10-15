@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Board {
   // These are to make moving pieces a little bit easier
-  private int ans;
+  private int ans = 0;
   
   Main main = new Main();
   // The White peices are capital and black pieces are lowercase
@@ -13,7 +13,7 @@ public class Board {
   // The char 'i' is representitive of the king piece
   // board[y][x]
   public char[][] board =
-    {{'r','k','b','i','q','b','k','r'},{'p','p','p','p','p','p','p','p'},
+  {{'r','k','b','i','q','b','k','r'},{'p','p','p','p','p','p','p','p'},
     {'n','n','n','n','n','n','n','n'},{'n','n','n','n','n','n','n','n'},
     {'n','n','n','n','n','n','n','n'},{'n','n','n','n','n','n','n','n'},
     {'P','P','P','P','P','P','P','P'},{'R','K','B','Q','I','B','K','R'}};
@@ -41,7 +41,7 @@ public class Board {
     int[] min = {moveX, moveY}; // This is the array for the combined coordinates of moveX and moveY
     inputMove(pin, min); // This puts action to the players inputs
   }
-    
+  
   
   /**
    * 
@@ -57,25 +57,25 @@ public class Board {
         case 'k':
           // movement for a knight
           if((piece[1] - move[1]) == 2 || (piece[1] - move[1]) == -2 || (piece[1] - move[1]) == 1 || (piece[1] - move[1]) == -1){
-            // If the difference between the x coordinates of the piece and where to move are within the rules
-            // of movement for a knight
-            if((piece[0] - move[0]) == 2 || (piece[0] - move[0]) == -2 || (piece[0] - move[0]) == 1 || (piece[0] - move[0]) == -1){
-              // Sets the original location of the piece to 'n' (null/ nothing)
-              board[piece[1]][piece[0]] = 'n'; 
-              // Sets the location to move to, to the piece type
-              board[move[1]][move[0]] = pieceNam; 
-              // Draws the board
-              drawBoard();
-            } else {
-             System.out.println("Invalid move");
-             drawBoard();
-            }
+          // If the difference between the x coordinates of the piece and where to move are within the rules
+          // of movement for a knight
+          if((piece[0] - move[0]) == 2 || (piece[0] - move[0]) == -2 || (piece[0] - move[0]) == 1 || (piece[0] - move[0]) == -1){
+            // Sets the original location of the piece to 'n' (null/ nothing)
+            board[piece[1]][piece[0]] = 'n'; 
+            // Sets the location to move to, to the piece type
+            board[move[1]][move[0]] = pieceNam; 
+            // Draws the board
+            drawBoard();
           } else {
-           System.out.println("Invalid move");
-           drawBoard();
+            System.out.println("Invalid move");
+            drawBoard();
           }
-          break;
-       case 'K':
+        } else {
+          System.out.println("Invalid move");
+          drawBoard();
+        }
+        break;
+        case 'K':
           System.out.println("The piece chosen is a white knight");
           // If the difference between the x coordinates of the piece and where to move are within the rules of 
           // movement for a knight
@@ -94,123 +94,123 @@ public class Board {
               drawBoard();
             }
           } else {
-           System.out.println("Invalid move!");
-           drawBoard();
+            System.out.println("Invalid move!");
+            drawBoard();
           }
           break;
-       case 'r':
-         System.out.println("The piece choosen is a black rook");
-         if(checkSurround(piece, move,pieceNam) == 1){
-           // Sets the original location of the piece to 'n' (null/ nothing)
-           board[piece[1]][piece[0]] = 'n'; 
-           // Sets the location to move to, to the piece type
-           board[move[1]][move[0]] = pieceNam;
-           // Draws the board
-           drawBoard();
-         } else {
-          System.out.println("Invalid move!");
-          drawBoard();
-         }
-         break;
-       case 'R':
-         System.out.println("The piece choosen is a white rook");
-         if(checkSurround(piece,move,pieceNam) == 1){
-           // Sets the original location of the piece to 'n' (null/ nothing)
-           board[piece[1]][piece[0]] = 'n'; 
-           // Sets the location to move to, to the piece type
-           board[move[1]][move[0]] = pieceNam;
-           // Draws the board
-           drawBoard();
-         } else {
-           System.out.println("Invalid move!");
-           drawBoard();
-         }
-         break;
-       case 'b':
-         System.out.println("The piece choosen is a black bishop");
-         if(checkSurround(piece,move,pieceNam) == 1){
-           // Sets the original location of the piece to 'n' (null/ nothing)
-           board[piece[1]][piece[0]] = 'n'; 
-           // Sets the location to move to, to the piece type
-           board[move[1]][move[0]] = pieceNam;
-           // Draws the board
-           drawBoard();
-         } else {
-           System.out.println("Invalid move!");
-           drawBoard();
-         }
-         break;
-       case 'B':
-         System.out.println("The piece choosen is a white bishop");
-         if(checkSurround(piece,move,pieceNam) == 1){
-           // Sets the original location of the piece to 'n' (null/ nothing)
-           board[piece[1]][piece[0]] = 'n'; 
-           // Sets the location to move to, to the piece type
-           board[move[1]][move[0]] = pieceNam;
-           // Draws the board
-           drawBoard();
-         } else {
-           System.out.println("Invalid move!");
-           drawBoard();
-         }
-         break;
-       case 'i':
-         System.out.println("The piece choosen is the black king");
-         // If the location desired to move to doesn't have any interfering pieces than continue
-         if(checkSurround(piece,move,pieceNam) == 1){
-           if((piece[1] - move[1]) == 1 || (piece[0] - move[0]) == 1 || (piece[1] - move[1]) == -1 || (piece[0] - move[0]) == -1){ 
-             // Sets the original location of the piece to 'n' (null/ nothing)
-             board[piece[1]][piece[0]] = 'n'; 
-             // Sets the location to move to, to the piece type
-             board[move[1]][move[0]] = pieceNam;
-             // Draws the board
-             drawBoard();
-           }
-         }
-         break;
-       case 'I':
-         System.out.println("The piece choosen is the white king");
-         // If the location desired to move to doesn't have any interfering pieces than continue
-         if(checkSurround(piece,move,pieceNam) == 1){
-           if((piece[1] - move[1]) == 1 || (piece[0] - move[0]) == 1 || (piece[1] - move[1]) == -1 || (piece[0] - move[0]) == -1){
-             // Sets the original location of the piece to 'n' (null/ nothing)
-             board[piece[1]][piece[0]] = 'n'; 
-             // Sets the location to move to, to the piece type
-             board[move[1]][move[0]] = pieceNam;
-             // Draws the board
-             drawBoard();
-           }
-         }
-         break;
-       case 'p':
-         System.out.println("The piece choosen is a black pawn");
-         System.out.println("value is " +(piece[1] - move[1]));
-         if(checkSurround(piece,move,pieceNam) == 1){
-           System.out.println("valid");
-           if((piece[1] - move[1]) == -2 || (piece[1] - move[1]) == -1){
-             // Sets the original location of the piece to 'n' (null/ nothing)
-             board[piece[1]][piece[0]] = 'n'; 
-             // Sets the location to move to, to the piece type
-             board[move[1]][move[0]] = pieceNam;
-             // Draws the board
-             drawBoard();
-           }
-         }else {
-           System.out.println("Invalid move!"); 
-         }
-         break;
+        case 'r':
+          System.out.println("The piece choosen is a black rook");
+          if(checkSurround(piece, move,pieceNam) == 1){
+            // Sets the original location of the piece to 'n' (null/ nothing)
+            board[piece[1]][piece[0]] = 'n'; 
+            // Sets the location to move to, to the piece type
+            board[move[1]][move[0]] = pieceNam;
+            // Draws the board
+            drawBoard();
+          } else {
+            System.out.println("Invalid move!");
+            drawBoard();
+          }
+          break;
+        case 'R':
+          System.out.println("The piece choosen is a white rook");
+          if(checkSurround(piece,move,pieceNam) == 1){
+            // Sets the original location of the piece to 'n' (null/ nothing)
+            board[piece[1]][piece[0]] = 'n'; 
+            // Sets the location to move to, to the piece type
+            board[move[1]][move[0]] = pieceNam;
+            // Draws the board
+            drawBoard();
+          } else {
+            System.out.println("Invalid move!");
+            drawBoard();
+          }
+          break;
+        case 'b':
+          System.out.println("The piece choosen is a black bishop");
+          if(checkSurround(piece,move,pieceNam) == 1){
+            // Sets the original location of the piece to 'n' (null/ nothing)
+            board[piece[1]][piece[0]] = 'n'; 
+            // Sets the location to move to, to the piece type
+            board[move[1]][move[0]] = pieceNam;
+            // Draws the board
+            drawBoard();
+          } else {
+            System.out.println("Invalid move!");
+            drawBoard();
+          }
+          break;
+        case 'B':
+          System.out.println("The piece choosen is a white bishop");
+          if(checkSurround(piece,move,pieceNam) == 1){
+            // Sets the original location of the piece to 'n' (null/ nothing)
+            board[piece[1]][piece[0]] = 'n'; 
+            // Sets the location to move to, to the piece type
+            board[move[1]][move[0]] = pieceNam;
+            // Draws the board
+            drawBoard();
+          } else {
+            System.out.println("Invalid move!");
+            drawBoard();
+          }
+          break;
+        case 'i':
+          System.out.println("The piece choosen is the black king");
+          // If the location desired to move to doesn't have any interfering pieces than continue
+          if(checkSurround(piece,move,pieceNam) == 1){
+            if((piece[1] - move[1]) == 1 || (piece[0] - move[0]) == 1 || (piece[1] - move[1]) == -1 || (piece[0] - move[0]) == -1){ 
+              // Sets the original location of the piece to 'n' (null/ nothing)
+              board[piece[1]][piece[0]] = 'n'; 
+              // Sets the location to move to, to the piece type
+              board[move[1]][move[0]] = pieceNam;
+              // Draws the board
+              drawBoard();
+            }
+          }
+          break;
+        case 'I':
+          System.out.println("The piece choosen is the white king");
+          // If the location desired to move to doesn't have any interfering pieces than continue
+          if(checkSurround(piece,move,pieceNam) == 1){
+            if((piece[1] - move[1]) == 1 || (piece[0] - move[0]) == 1 || (piece[1] - move[1]) == -1 || (piece[0] - move[0]) == -1){
+              // Sets the original location of the piece to 'n' (null/ nothing)
+              board[piece[1]][piece[0]] = 'n'; 
+              // Sets the location to move to, to the piece type
+              board[move[1]][move[0]] = pieceNam;
+              // Draws the board
+              drawBoard();
+            }
+          }
+          break;
+        case 'p':
+          System.out.println("The piece choosen is a black pawn");
+          System.out.println("value is " +(piece[1] - move[1]));
+          if(checkSurround(piece,move,pieceNam) == 1){
+            System.out.println("valid");
+            if((piece[1] - move[1]) == -2 || (piece[1] - move[1]) == -1){
+              // Sets the original location of the piece to 'n' (null/ nothing)
+              board[piece[1]][piece[0]] = 'n'; 
+              // Sets the location to move to, to the piece type
+              board[move[1]][move[0]] = pieceNam;
+              // Draws the board
+              drawBoard();
+            }
+          } else {
+            System.out.println("Invalid move!"); 
+          }
+          break;
         case 'P':
           System.out.println("The piece choosen is a white pawn");
           if(checkSurround(piece,move,pieceNam) == 1){
             if((piece[1] - move[1]) == 2 || (piece[1] - move[1]) == 1){
               // Sets the original location of the piece to 'n' (null/ nothing)
-             board[piece[1]][piece[0]] = 'n'; 
-             // Sets the location to move to, to the piece type
-             board[move[1]][move[0]] = pieceNam;
-             // Draws the board
-             drawBoard();
+              board[piece[1]][piece[0]] = 'n'; 
+              // Sets the location to move to, to the piece type
+              board[move[1]][move[0]] = pieceNam;
+              // Draws the board
+              drawBoard();
             }
-          }else {
+          } else {
             System.out.println("Invalid move!");
           }
           break;
@@ -240,7 +240,6 @@ public class Board {
     int diagDownRight; // The amount of spaces a piece can move diagonally downwards and to the right
     int diagDownLeft; // The amount of spaces a piece can move diagonally downwards and to the left
     // If the piece is a rook then continue into the body
-    System.out.println(" type is " + type);
     if( type == 'r' || type == 'R'){
       for (int i = distY; i < distY; i++){
         for(int j = distX; j < distX; j++){
@@ -250,34 +249,38 @@ public class Board {
             ans = 1;
           }
         } 
-     }
-   }
-   if(type == 'b' || type == 'B'){
-     for (int i = distY; i < distY; i++){
-       for(int j = distX; j < distX; j++){
-         System.out.println(piece[1] + " " + piece[0]);
-         // If the selected piece is empty than set variable ans to 1
-         if(board[piece[1]+j][piece[0]+i] == 'n'){
-           System.out.println("Valid at " + piece[1] + " " + piece[0]);
-           ans = 1;
-         }
-       }
-     }
-   }
-   if(type == 'p' || type == 'P'){
-     for(int i = -distY; i < distY; i++){
-       System.out.println(" i = " + i + " distY = " + distY);
-       for(int j = -distX; j < distX; j++){
-         System.out.println("j = " + j + " distX = " + distX);
-         // If the selected piece is empty than set variable ans to 1
-         System.out.println(board[piece[1]][piece[0]+i]);
-         if(board[piece[1]+j][piece[0]+i] == 'n'){
-           System.out.println("Valid at " + piece[1] + " " + piece[0]);
-           ans = 1;
-         }
-       }
-     }
-   }
-   return ans;
+      }
+    }
+    // If the piece is a bishop
+    if(type == 'b' || type == 'B'){
+      // Check all possible locations for a piece that would interfere
+      for (int i = distY; i < distY; i++){
+        for(int j = distX; j < distX; j++){
+          System.out.println(piece[1] + " " + piece[0]);
+          // If the selected piece is empty than set variable ans to 1
+          if(board[piece[1]+j][piece[0]+i] == 'n'){
+            System.out.println("Valid at " + piece[1] + " " + piece[0]);
+            ans = 1;
+          }
+        }
+      }
+    }
+    // If the piece is a pawn
+    if(type == 'p' || type == 'P'){
+      // Check all of the possible moves to see if any have piece that would make a move invalid
+      for(int i = -distY; i < distY; i++){
+        System.out.println(" i = " + i + " distY = " + distY);
+        for(int j = -distX; j < distX; j++){
+          System.out.println("j = " + j + " distX = " + distX);
+          // If the selected piece is empty than set variable ans to 1
+          System.out.println(board[piece[1]][piece[0]+i]);
+          if(board[piece[1]+j][piece[0]+i] == 'n'){
+            System.out.println("Valid at " + piece[1] + " " + piece[0]);
+            ans = 1;
+          }
+        }
+      }
+    }
+    return ans;
   }
 }

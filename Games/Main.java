@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-  /**
-   * This is the main class for executing methods in this project
-   * 
-   * */
+/**
+ * This is the main class for executing methods in this project
+ * 
+ * */
 public class Main {
-  // These are to make moving pieces a little bit easier
-  private int ans;
-   /*
+  
+  /*
    * This is the concept of chess.
    * Pawns can move 1 space forward, can only move 1 space diagonally in front 
    * of itself in an offensive. For it's first move it can move either one or 
