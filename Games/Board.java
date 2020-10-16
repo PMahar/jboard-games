@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Board {
+  //TODO: We still need to add a feature for castling.
+  //TODO: Along with getting the pawns and other pieces to functino properly 
   Main main = new Main();
   int ans;
   // The White peices are capital and black pieces are lowercase
