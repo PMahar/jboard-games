@@ -45,7 +45,6 @@ public class Main {
   // Board
   public static void main(String[] args) {
     Board board = new Board();
-    Player player = new Player();
     System.out.println("Uppercase letters are white, lowercase are black");
     board.drawBoard(); // Create the board
   }
