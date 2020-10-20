@@ -77,9 +77,14 @@ public class Board {
     // Else, break
     if(board[move[1]][move[0]] == 'n'){
       // Sets a char variable "pieceNam" to the value of the piece to be moved
+<<<<<<< Updated upstream
       turn++;
       char pieceNam = board[piece[1]][piece[0]];
   }
+=======
+	  turn ++;
+	  char pieceNam = board[piece[1]][piece[0]];
+>>>>>>> Stashed changes
       switch(pieceNam) {
         case 'r':
           System.out.println("The piece chosen is a black rook");
@@ -245,7 +250,19 @@ public class Board {
           break;
         default:
           break;
+<<<<<<< Updated upstream
       }
+=======
+	  }
+    } else if (board[move[0]][move[1]] == 'P' || board[move[0]][move[1]] == 'R' || board[move[0]][move[1]] == 'K' || board[move[0]][move[1]] == 'B'
+                 || board[move[0]][move[1]] == 'Q' || board[move[0]][move[1]] == 'I') {
+		System.out.println("Knocked over piece " + board[move[0]][move[1]] + " at " + move[0] + ", " + move[1]);
+		turn++;
+	} else {
+		System.out.println(piece[0] + ", " + piece[1] + " to " + move[0] + ", " + move[1] + ": Invalid move, piece in the way!");
+    }
+    drawBoard();
+>>>>>>> Stashed changes
   }
 } else if (board[move[0]][move[1]] == 'P' || board[move[0]][move[1]] == 'R' || board[move[0]][move[1]] == 'K' || board[move[0]][move[1]] == 'B'
              || board[move[0]][move[1]] == 'Q' || board[move[0]][move[1]] == 'I') {
