@@ -35,14 +35,13 @@ public class Board {
     // Print the labels for each part of the board
     System.out.println("   A B C D E F G H");
     System.out.println();
-    // This is for figuring out who's turn it is
-    String turnState;
-    if (turn%2 == 0) {
-      turnState = "Turn " + turn + ": Black's move";
-    } else {
-      turnState = "Turn " + turn + ": White's move"; 
-    }
-    System.out.println(turnState);
+ String turnState;
+ if (turn%2 == 0) {
+  turnState = "Turn " + turn + ": Black's move";
+ } else {
+  turnState = "Turn " + turn + ": White's move"; 
+ }
+ System.out.println(turnState);
     Scanner sc = new Scanner(System.in);
     System.out.println("Pick a piece (X-coord A-H where A = 1):");
     int pieceX = sc.nextInt() - 1; // This is the X coordinate for the piece to be moved
@@ -77,14 +76,10 @@ public class Board {
     // Else, break
     if(board[move[1]][move[0]] == 'n'){
       // Sets a char variable "pieceNam" to the value of the piece to be moved
-<<<<<<< Updated upstream
       turn++;
       char pieceNam = board[piece[1]][piece[0]];
+
   }
-=======
-	  turn ++;
-	  char pieceNam = board[piece[1]][piece[0]];
->>>>>>> Stashed changes
       switch(pieceNam) {
         case 'r':
           System.out.println("The piece chosen is a black rook");
@@ -152,7 +147,7 @@ public class Board {
             board[move[1]][move[0]] = pieceNam;
             drawBoard();
             System.out.println(pieceNam);
-          }
+    }
           break;
         case 'B':
           System.out.println("The piece chosen is a white bishop");
@@ -178,7 +173,7 @@ public class Board {
             System.out.println(pieceNam);
           } else {
             System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
-                               ") - Invalid move: Out of selected piece's range");
+            ") - Invalid move: Out of selected piece's range");
           }
           break;
         case 'I':
@@ -191,14 +186,14 @@ public class Board {
             System.out.println(pieceNam);
           } else {
             System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
-                               ") - Invalid move: Out of selected piece's range");
+            ") - Invalid move: Out of selected piece's range");
           }
           break;
         case 'q':
           System.out.println("The piece chosen is a black queen");
           if((motX > 0) && (motY > 0) && (motX != motY)) {
             System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
-                                 + move[1] + ") - Invalid move: Out of selected piece's range");
+            + move[1] + ") - Invalid move: Out of selected piece's range");
             break;
           } else {
             System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
@@ -212,7 +207,7 @@ public class Board {
           System.out.println("The piece chosen is a white queen");
           if((motX > 0) && (motY > 0) && (motX != motY)) {
             System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
-                                 + move[1] + ") - Invalid move: Out of selected piece's range");
+            + move[1] + ") - Invalid move: Out of selected piece's range");
             break;
           } else {
             System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
@@ -220,8 +215,8 @@ public class Board {
             board[move[1]][move[0]] = pieceNam;
             drawBoard();
             System.out.println(pieceNam);
-          }
-          break;
+    }
+        break;
         case 'p':
           System.out.println("The piece chosen is a black pawn");
           if ((motX == 1) || (motY == 1)|| (motY == 2)) {
@@ -250,19 +245,7 @@ public class Board {
           break;
         default:
           break;
-<<<<<<< Updated upstream
       }
-=======
-	  }
-    } else if (board[move[0]][move[1]] == 'P' || board[move[0]][move[1]] == 'R' || board[move[0]][move[1]] == 'K' || board[move[0]][move[1]] == 'B'
-                 || board[move[0]][move[1]] == 'Q' || board[move[0]][move[1]] == 'I') {
-		System.out.println("Knocked over piece " + board[move[0]][move[1]] + " at " + move[0] + ", " + move[1]);
-		turn++;
-	} else {
-		System.out.println(piece[0] + ", " + piece[1] + " to " + move[0] + ", " + move[1] + ": Invalid move, piece in the way!");
-    }
-    drawBoard();
->>>>>>> Stashed changes
   }
 } else if (board[move[0]][move[1]] == 'P' || board[move[0]][move[1]] == 'R' || board[move[0]][move[1]] == 'K' || board[move[0]][move[1]] == 'B'
              || board[move[0]][move[1]] == 'Q' || board[move[0]][move[1]] == 'I') {
@@ -271,9 +254,8 @@ public class Board {
 } else {
   System.out.println(piece[0] + ", " + piece[1] + " to " + move[0] + ", " + move[1] + ": Invalid move, piece in the way!");
 }
-drawBoard();
-}
-}
+    drawBoard();
+  }
   
   /**
    * This is used to check the surroundings to see if a piece can move without interfering with another piece
