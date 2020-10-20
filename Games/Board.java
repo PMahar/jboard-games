@@ -18,17 +18,19 @@ public class Board {
   // board[y][x]
   public char[][] board =
   {{'r','k','b','i','q','b','k','r'},
-  {'p','p','p','p','p','p','p','p'},
-  {'n','n','n','n','n','n','n','n'},
-  {'n','n','n','n','n','n','n','n'},
-  {'n','n','n','n','n','n','n','n'},
-  {'n','n','n','n','n','n','n','n'},
-  {'P','P','P','P','P','P','P','P'},
-  {'R','K','B','I','Q','B','K','R'}};
+    {'p','p','p','p','p','p','p','p'},
+    {'n','n','n','n','n','n','n','n'},
+    {'n','n','n','n','n','n','n','n'},
+    {'n','n','n','n','n','n','n','n'},
+    {'n','n','n','n','n','n','n','n'},
+    {'P','P','P','P','P','P','P','P'},
+    {'R','K','B','I','Q','B','K','R'}};
+  
   /**
    * This draws the board
    * */
   public void drawBoard(){
+    // Print out the board
     for(int i = 8; i > 0; i--){
       System.out.println(i + " |" + board[i - 1][0] + "|" + board[i - 1][1] + "|" + board[i - 1][2] + "|" + board[i - 1][3] + "|"
       + board[i - 1][4] + "|" + board[i - 1][5] + "|" + board[i - 1][6] + "|" + board[i - 1][7] + "|");
@@ -42,18 +44,25 @@ public class Board {
     } else {
       turnState = "Turn " + turn + ": White's move"; 
     }
+    // Print whether it's black's turn or white's turn to move
     System.out.println(turnState);
+    // Create the scanner so we can use the input of the user
     Scanner sc = new Scanner(System.in);
     System.out.println("Pick a piece (X-coord A-H where A = 1):");
-    int pieceX = sc.nextInt() - 1; // This is the X coordinate for the piece to be moved
+    // This is the X coordinate for the piece to be moved
+    int pieceX = sc.nextInt() - 1;
     System.out.println("Pick a piece (Y-coord 1-8):");
-    int pieceY = sc.nextInt() - 1; // This is the Y coordinate for the piece to be moved
-    int[] pin = {pieceX, pieceY}; // This is the array for combined coordinates of pieceX and pieceY
+    // This is the Y coordinate for the piece to be moved
+    int pieceY = sc.nextInt() - 1; 
+    // This is the array for combined coordinates of pieceX and pieceY
+    int[] pin = {pieceX, pieceY}; 
     System.out.println("Got user input " + pieceX + ", " + pieceY);
     System.out.println("Pick where to move the piece to (X-coord A-H where A = 1): ");
-    int moveX = sc.nextInt() - 1; // This is the X coordinate for where to move the piece to
+    // This is the X coordinate for where to move the piece to
+    int moveX = sc.nextInt() - 1; 
     System.out.println("Pick where to move the piece to (Y-coord 1-8):");
-    int moveY = sc.nextInt() - 1; // This is the Y coordinate for where to move the piece to
+    // This is the Y coordinate for where to move the piece to
+    int moveY = sc.nextInt() - 1; 
     int[] min = {moveX, moveY}; // This is the array for the combined coordinates of moveX and moveY
     inputMove(pin, min); // This puts action to the players inputs
   }
@@ -64,9 +73,6 @@ public class Board {
    * @param piece is the first array given and is the coordinates for the piece to be moved
    * @param moveTo is the second array given and will be checked to see if there is a pre-existing piece
    * */
-//  if ((turn % 2 == 0) && (board[piece[0]][piece[1]] == 'r') || (board[piece[0]][piece[1]] == 'k') || (board[piece[0]][piece[1]] == 'b')
-//   || (board[piece[0]][piece[1]] == 'i') || (board[piece[0]][piece[1]] == 'q')) {
-//   System.out.println("Invalid move");
   public void inputMove(int[] piece, int[] move){
     int distX = piece[0] - move[0]; // This is the distance that the piece needs to move in the X-ax
     int distY = piece[1] - move[1]; // This is the distance that the piece needs to move in the Y-axis
@@ -76,10 +82,11 @@ public class Board {
     // Else, if the spot contains the other player's piece, knock the piece over
     // Else, break
     if(board[move[1]][move[0]] == 'n'){
-      // Sets a char variable "pieceNam" to the value of the piece to be moved
       turn++;
+      // Sets a char variable "pieceNam" to the value of the piece to be moved
       pieceNam = board[piece[1]][piece[0]];
     }
+    // This is where all the checks for movement
     switch(pieceNam) {
       case 'r':
         System.out.println("The piece chosen is a black rook");
@@ -219,7 +226,9 @@ public class Board {
         break;
       case 'p':
         System.out.println("The piece chosen is a black pawn");
-        if ((motX == 1) || (motY == 1)|| (motY == 2)) {
+        // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
+        // a piece to attack isn't available
+        if ((motX == 1) && (motY == 1)) {
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -232,7 +241,9 @@ public class Board {
         break;
       case 'P':
         System.out.println("The piece chosen is a white pawn");
-        if ((motX == 1) || (motY == 1) || (motY == 1) || (motY == 2)) {
+        // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
+        // a piece to attack isn't available
+        if ((motX == 1) && (motY == 1)) {
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
