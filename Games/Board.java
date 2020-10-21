@@ -236,9 +236,9 @@ public class Board {
         System.out.println("The piece chosen is a black pawn");
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
-        if ((Math.abs(motX) == 1) && (Math.abs(motY) == 1)) {
+        System.out.println(motX + ": motX, motY "+motY);
+        if ((Math.abs(motX) == 1) || (Math.abs(motY) == 1)) {
           valid = true;
-          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -256,7 +256,7 @@ public class Board {
         System.out.println("The piece chosen is a white pawn");
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
-        if ((motX == 1) && (motY == 1)) {
+        if ((motX == 1) || (motY == 1)) {
           valid = true;
           System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
