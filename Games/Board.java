@@ -94,11 +94,9 @@ public class Board {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + 
                              ") to (" + move[0] + ", "+ move[1] + ") - Invalid move: Out of selected piece's range");
           valid = false;
-          System.out.println("Valid is " + valid);
           break;
         } else {
           valid = true;
-          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -112,11 +110,9 @@ public class Board {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
                                + move[1] + ") - Invalid move: Out of selected piece's range");
           valid = false;
-          System.out.println("Valid is " + valid);
           break;
         } else {
           valid = true;
-          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -237,7 +233,7 @@ public class Board {
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
         System.out.println(motX + ": motX, motY "+motY);
-        if ((Math.abs(motX) == 1) || (Math.abs(motY) == 1)) {
+        if ((Math.abs(motX) == 1) || (Math.abs(motY) == 1) || (piece[1] == 2 && Math.abs(motY) == 2) ) {
           valid = true;
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
@@ -249,16 +245,14 @@ public class Board {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
                              ") - Invalid move: Out of selected piece's range");
           valid = false;
-          System.out.println("Valid is " + valid);
         }
         break;
       case 'P':
         System.out.println("The piece chosen is a white pawn");
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
-        if ((motX == 1) || (motY == 1)) {
+        if ((motX == 1) || (motY == 1) || (piece[1] == 7 && Math.abs(motY) == 2)) {
           valid = true;
-          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -269,15 +263,14 @@ public class Board {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
                              ") - Invalid move: Out of selected piece's range");
           valid = false;
-          System.out.println("Valid is " + valid);
         }
         break;
       default:
         break;
     }
-//    if(valid){
-//      turn++;
-//    }
+    if(valid){
+      turn++;
+    }
     drawBoard();
   }
 
