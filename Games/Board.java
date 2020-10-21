@@ -9,6 +9,7 @@ public class Board {
   Main main = new Main();
   int ans;
   int turn = 1;
+  boolean valid;
   // The White peices are capital and black pieces are lowercase
   // Matrix board will contain information on the location and types of pieces, if there are no pieces it 
   // will show "n"  
@@ -82,7 +83,6 @@ public class Board {
     // Else, if the spot contains the other player's piece, knock the piece over
     // Else, break
     if(board[move[1]][move[0]] == 'n'){
-      turn++;
       // Sets a char variable "pieceNam" to the value of the piece to be moved
       pieceNam = board[piece[1]][piece[0]];
     }
@@ -91,10 +91,14 @@ public class Board {
       case 'r':
         System.out.println("The piece chosen is a black rook");
         if((motX > 0) && (motY > 0)) {
-          System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
-                               + move[1] + ") - Invalid move: Out of selected piece's range");
+          System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + 
+                             ") to (" + move[0] + ", "+ move[1] + ") - Invalid move: Out of selected piece's range");
+          valid = false;
+          System.out.println("Valid is " + valid);
           break;
         } else {
+          valid = true;
+          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -107,8 +111,12 @@ public class Board {
         if((motX > 0) && (motY > 0)) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
                                + move[1] + ") - Invalid move: Out of selected piece's range");
+          valid = false;
+          System.out.println("Valid is " + valid);
           break;
         } else {
+          valid = true;
+          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
@@ -228,15 +236,20 @@ public class Board {
         System.out.println("The piece chosen is a black pawn");
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
-        if ((motX == 1) && (motY == 1)) {
+        if ((Math.abs(motX) == 1) && (Math.abs(motY) == 1)) {
+          valid = true;
+          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
           drawBoard();
           System.out.println(pieceNam);
+          break;
         } else {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
                              ") - Invalid move: Out of selected piece's range");
+          valid = false;
+          System.out.println("Valid is " + valid);
         }
         break;
       case 'P':
@@ -244,21 +257,29 @@ public class Board {
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
         if ((motX == 1) && (motY == 1)) {
+          valid = true;
+          System.out.println("Valid is " + valid);
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
           drawBoard();
           System.out.println(pieceNam);
+          break;
         } else {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
                              ") - Invalid move: Out of selected piece's range");
+          valid = false;
+          System.out.println("Valid is " + valid);
         }
         break;
       default:
         break;
     }
-  drawBoard();
-}
+//    if(valid){
+//      turn++;
+//    }
+    drawBoard();
+  }
 
 /**
  * This is used to check the surroundings to see if a piece can move without interfering with another piece
