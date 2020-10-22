@@ -232,14 +232,14 @@ public class Board {
         System.out.println("The piece chosen is a black pawn");
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
-        System.out.println(motX + ": motX, motY "+motY);
-        if ((motX == 1) || (motY == 1) || (piece[1] == 2 && motY == 2) ) {
+        if ((motX == 1) || (motY == 1) || (piece[1] == 1 && motY == 2) ) {
           valid = true;
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
           drawBoard();
           System.out.println(pieceNam);
+          turn++;
           break;
         } else {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
@@ -251,7 +251,7 @@ public class Board {
         System.out.println("The piece chosen is a white pawn");
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
-        if (motX == 1 || motY == -1 || (piece[1] == 7 && motY == -2)) {
+        if (motX == 1 || motY == 1 || (piece[1] == 6 && motY == 2)) {
           valid = true;
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
@@ -268,9 +268,10 @@ public class Board {
       default:
         break;
     }
-    if(valid){
-      turn++;
-    }
+//    if(valid){
+//      System.out.println("Valid move, next persons turn");
+//      turn++;
+//    }
     drawBoard();
   }
 
