@@ -92,6 +92,7 @@ public class Board {
     switch(pieceNam) {
       case 'r':
         System.out.println("The piece chosen is a black rook");
+		System.out.println();
         if((motX > 0) && (motY > 0)) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + 
                              ") to (" + move[0] + ", "+ move[1] + ") - Invalid move: Out of selected piece's range");
@@ -107,6 +108,7 @@ public class Board {
         break;
       case 'R':
         System.out.println("The piece chosen is a white rook");
+		System.out.println();
         if((motX > 0) && (motY > 0)) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
                                + move[1] + ") - Invalid move: Out of selected piece's range");
@@ -122,6 +124,7 @@ public class Board {
         break;
       case 'k':
         System.out.println("The piece chosen is a black knight");
+		System.out.println();
         if ((motX == 2 && motY == 1) || (motX == 1 && motY == 2)) {
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
@@ -135,6 +138,7 @@ public class Board {
         break;
       case 'K':
         System.out.println("The piece chosen is a white knight");
+		System.out.println();
         if ((motX == 2 && motY == 1) || (motX == 1 && motY == 2)) {
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
@@ -149,6 +153,7 @@ public class Board {
         break;
       case 'b':
         System.out.println("The piece chosen is a black bishop");
+		System.out.println();
         if (motX != motY) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
                                + move[1] + ") - Invalid move: Out of selected piece's range");
@@ -164,6 +169,7 @@ public class Board {
         break;
       case 'B':
         System.out.println("The piece chosen is a white bishop");
+		System.out.println();
         if (motX != motY) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
                                + move[1] + ") - Invalid move: Out of selected piece's range");
@@ -179,6 +185,7 @@ public class Board {
         break;
       case 'i':
         System.out.println("The piece chosen is a black king");
+		System.out.println();
         if ((motX == 1) || (motY == 1) || (motX == 1 && motY == 1)) {
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
@@ -193,6 +200,7 @@ public class Board {
         break;
       case 'I':
         System.out.println("The piece chosen is a white king");
+		System.out.println();
         if ((motX == 1) || (motY == 1) || (motX == 1 && motY == 1)) {
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
@@ -207,6 +215,7 @@ public class Board {
         break;
       case 'q':
         System.out.println("The piece chosen is a black queen");
+		System.out.println();
         if((motX > 0) && (motY > 0) && (motX != motY)) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
                                + move[1] + ") - Invalid move: Out of selected piece's range");
@@ -222,6 +231,7 @@ public class Board {
         break;
       case 'Q':
         System.out.println("The piece chosen is a white queen");
+		System.out.println();
         if((motX > 0) && (motY > 0) && (motX != motY)) {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " 
             + move[1] + ") - Invalid move: Out of selected piece's range");
@@ -237,6 +247,7 @@ public class Board {
         break;
       case 'p':
         System.out.println("The piece chosen is a black pawn");
+		System.out.println();
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
         if ((motX == 1) || (motY == 1) || (piece[1] == 1 && motY == 2) ) {
@@ -250,15 +261,14 @@ public class Board {
         } else {
           System.out.println(board[piece[0]][piece[1]] + " at (" + piece[0] + "," + piece[1] + ") to (" + move[0] + ", " + move[1] +
                              ") - Invalid move: Out of selected piece's range");
-          valid = false;
         }
         break;
       case 'P':
         System.out.println("The piece chosen is a white pawn");
+		System.out.println();
         // TODO: We need to figure out a way to be able to do an attack without allowing it to happen when
         // a piece to attack isn't available
         if (motX == 1 || motY == 1 || (piece[1] == 6 && motY == 2)) {
-          valid = true;
           System.out.println("This should be doing this: " + board[piece[1]][piece[0]] + " to " + board[move[1]][move[0]]);
           board[piece[1]][piece[0]] = 'n';
           board[move[1]][move[0]] = pieceNam;
