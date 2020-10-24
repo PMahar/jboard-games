@@ -54,20 +54,29 @@ public class Board {
     System.out.println("Pick a piece (X-coord A-H where A = 1):");
     // This is the X coordinate for the piece to be moved
     int pieceX = sc.nextInt() - 1;
+	System.out.println();
     System.out.println("Pick a piece (Y-coord 1-8):");
     // This is the Y coordinate for the piece to be moved
     int pieceY = sc.nextInt() - 1; 
+	System.out.println();
     // This is the array for combined coordinates of pieceX and pieceY
     int[] pin = {pieceX, pieceY}; 
-    System.out.println("Got user input " + pieceX + ", " + pieceY);
+	System.out.println("Selected piece " + board[(pieceX + 1)][(pieceY + 1)] + " at " + pieceX + ", " + pieceY);
     System.out.println("Pick where to move the piece to (X-coord A-H where A = 1): ");
+	System.out.println("Or, type 10 to cancel.");
     // This is the X coordinate for where to move the piece to
-    int moveX = sc.nextInt() - 1; 
-    System.out.println("Pick where to move the piece to (Y-coord 1-8):");
-    // This is the Y coordinate for where to move the piece to
-    int moveY = sc.nextInt() - 1; 
-    int[] min = {moveX, moveY}; // This is the array for the combined coordinates of moveX and moveY
-    inputMove(pin, min); // This puts action to the players inputs
+    int moveX = sc.nextInt() - 1;
+	System.out.println();
+	if (moveX == 9) {
+		drawBoard();
+	} else {
+      System.out.println("Pick where to move the piece to (Y-coord 1-8):");
+      // This is the Y coordinate for where to move the piece to
+      int moveY = sc.nextInt() - 1; 
+	  System.out.println();
+      int[] min = {moveX, moveY}; // This is the array for the combined coordinates of moveX and moveY
+      inputMove(pin, min); // This puts action to the players inputs
+	}
   }
   
   
@@ -87,6 +96,7 @@ public class Board {
     if(board[move[1]][move[0]] == 'n'){
       // Sets a char variable "pieceNam" to the value of the piece to be moved
       pieceNam = board[piece[1]][piece[0]];
+	  turn ++;
     }
     // This is where all the checks for movement
     switch(pieceNam) {
@@ -281,7 +291,7 @@ public class Board {
         }
         break;
       default:
-        break;
+        break;	
     }
     drawBoard();
   }
